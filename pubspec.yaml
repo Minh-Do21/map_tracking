@@ -135,4 +135,4 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 
 lint_staged:
-  'lib/**.dart': dart format --fix && dart fix --apply && dart analyze
+  'lib/**.dart':  dart analyze && dart format --fix && dart fix --apply 
