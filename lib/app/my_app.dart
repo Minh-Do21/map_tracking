@@ -1,9 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/physics.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../screens/app_router.dart';
-import '../utils/barrel_utils.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key, required this.firstScreen}) : super(key: key);
@@ -37,7 +35,6 @@ class MyApp extends StatelessWidget {
         builder: BotToastInit(),
         navigatorObservers: [BotToastNavigatorObserver()],
         theme: ThemeData(
-          backgroundColor: COLOR_CONST.white,
           brightness: Brightness.light,
         ),
         home: firstScreen,
