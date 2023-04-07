@@ -48,7 +48,7 @@ extension ICON_CONST_VALUE on ICON_CONST {
       case ICON_CONST.ic_friend_selected:
         return 'assets/icons/ic_friend_selected.svg';
       case ICON_CONST.ic_message:
-        return 'assets/icons/ic_message.svg'; 
+        return 'assets/icons/ic_message.svg';
       case ICON_CONST.ic_message_selected:
         return 'assets/icons/ic_message_selected.svg';
       case ICON_CONST.ic_profile:

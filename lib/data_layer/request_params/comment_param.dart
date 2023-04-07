@@ -1,4 +1,4 @@
-class CommentParam{
+class CommentParam {
   String? url;
   String? count;
   String? cursor;
@@ -9,11 +9,11 @@ class CommentParam{
     this.cursor,
   });
 
-  Map<String, dynamic> toJson(){
-    final data= <String, dynamic>{};
-    if(url != null) data['url'] = url;
-    if(count!=null) data['count'] = count;
-    if(cursor!=null) data['cursor'] = cursor;
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    if (url != null) data['url'] = url;
+    if (count != null) data['count'] = count;
+    if (cursor != null) data['cursor'] = cursor;
     return data;
   }
 }

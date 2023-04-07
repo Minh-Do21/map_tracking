@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../utils/barrel_utils.dart';
@@ -8,12 +7,11 @@ class FriendScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: COLOR_CONST.white,
-      body: BlocProvider(
-      create: (_) => FriendBloc()..add(InitBlocEvent()),
-        child: const _FriendScreenForm(),
-      )
-    );
+        backgroundColor: COLOR_CONST.white,
+        body: BlocProvider(
+          create: (_) => FriendBloc()..add(InitBlocEvent()),
+          child: const _FriendScreenForm(),
+        ));
   }
 }
 

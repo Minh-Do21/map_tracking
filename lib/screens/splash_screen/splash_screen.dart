@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -45,35 +44,38 @@ class _SplashScreenFormState extends State<SplashScreenForm> {
   Widget build(BuildContext context) {
     return BlocListener<SplashBloc, SplashState>(
       listener: (context, state) async {
-
         if (state is GoToDashBoardScreen) {
           Navigator.pushNamedAndRemoveUntil(
             context,
             AppRouter.DASHBOARD_SCREEN,
             (route) => false,
-          );  
+          );
         }
-        
+
         if (state is GoToLoginScreen) {
-        //   Navigator.pushNamedAndRemoveUntil(
-        //     context,
-        //     AppRouter.LOGIN_SCREEN,
-        //     (route) => false,
-        //   );
-        // } else if (state is GoToDashBoardScreen) {
-        //   Navigator.pushNamedAndRemoveUntil(
-        //     context,
-        //     AppRouter.DASHBOARD_SCREEN,
-        //     (route) => false,
-        //   );
+          //   Navigator.pushNamedAndRemoveUntil(
+          //     context,
+          //     AppRouter.LOGIN_SCREEN,
+          //     (route) => false,
+          //   );
+          // } else if (state is GoToDashBoardScreen) {
+          //   Navigator.pushNamedAndRemoveUntil(
+          //     context,
+          //     AppRouter.DASHBOARD_SCREEN,
+          //     (route) => false,
+          //   );
         }
       },
       child: Container(
         decoration: const BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [COLOR_CONST.pomegranate, COLOR_CONST.white, COLOR_CONST.crusta])),
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+              COLOR_CONST.pomegranate,
+              COLOR_CONST.white,
+              COLOR_CONST.crusta
+            ])),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: Center(

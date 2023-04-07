@@ -32,7 +32,7 @@ extension ApiURLState on ApiURL {
       case ApiURL.getVideoUserPost:
         return HTTPRequestMethods.get;
 
-      //- API Using Post Method
+        //- API Using Post Method
         return HTTPRequestMethods.post;
 
       // - API Using patch Method

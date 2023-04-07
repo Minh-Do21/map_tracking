@@ -13,9 +13,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<InitBlocEvent>(_initBlocEvent);
   }
 
-  Future<void> _initBlocEvent(InitBlocEvent event, Emitter<ProfileState> emit) async {
-    emit(
-      state.copyWith(text: "",)
-    );
+  Future<void> _initBlocEvent(
+      InitBlocEvent event, Emitter<ProfileState> emit) async {
+    emit(state.copyWith(
+      text: "",
+    ));
   }
 }

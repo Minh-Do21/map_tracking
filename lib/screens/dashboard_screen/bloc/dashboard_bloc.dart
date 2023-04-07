@@ -6,18 +6,16 @@ part 'dashboard_state.dart';
 
 class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   final authenRepository = AuthenRepository();
-  DashboardBloc() 
+  DashboardBloc()
       : super(const DashboardState(
-        index: 0,
-      )
-    ){
+          index: 0,
+        )) {
     on<ChangeScreenEvent>(_changeScreenEventToState);
   }
 
   // ignore: avoid_void_async
-  void _changeScreenEventToState(ChangeScreenEvent event, Emitter<DashboardState> emit) async {
-     emit(state.copyWith(
-        index: event.index
-      ));
+  void _changeScreenEventToState(
+      ChangeScreenEvent event, Emitter<DashboardState> emit) async {
+    emit(state.copyWith(index: event.index));
   }
 }

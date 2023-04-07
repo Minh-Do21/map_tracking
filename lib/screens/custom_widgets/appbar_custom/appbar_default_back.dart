@@ -29,24 +29,26 @@ class AppBarDefaultBack extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: Text(
         title,
-        style: titleStyle ?? FONT_CONST.bold(color: COLOR_CONST.white, fontSize: 18),
+        style: titleStyle ??
+            FONT_CONST.bold(color: COLOR_CONST.white, fontSize: 18),
       ),
       centerTitle: true,
       elevation: 0,
       backgroundColor: backgroundColor ?? COLOR_CONST.allports,
       brightness: Brightness.dark,
       automaticallyImplyLeading: false,
-      leading: isCallBack! ?
-       AppIconButtonCustom(
-        icon: 
-        iconBack ?? SvgPicture.asset(
-          ICON_CONST.ic_back.path,
-          color: COLOR_CONST.black,
-        ),
-        onPressed: () {
-            Navigator.of(context).pop();         
-        },
-      ) : Container(),
+      leading: isCallBack!
+          ? AppIconButtonCustom(
+              icon: iconBack ??
+                  SvgPicture.asset(
+                    ICON_CONST.ic_back.path,
+                    color: COLOR_CONST.black,
+                  ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          : Container(),
       actions: actions,
     );
   }

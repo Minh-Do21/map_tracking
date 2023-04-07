@@ -10,7 +10,7 @@ extension NOTIFICATION_CENTER_CHANNEL_VALUE on NOTIFICATION_CENTER_CHANNEL {
       case NOTIFICATION_CENTER_CHANNEL.SCAN_NFC:
         return 'scan_nfc';
       case NOTIFICATION_CENTER_CHANNEL.LOG_OUT:
-        return 'log_out';  
+        return 'log_out';
       case NOTIFICATION_CENTER_CHANNEL.RELOAD_HISTORY:
         return 'reload_history';
     }

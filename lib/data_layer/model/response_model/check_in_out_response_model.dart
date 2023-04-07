@@ -4,7 +4,7 @@ class CheckInOutResponseModel {
   String attendTime;
 
   CheckInOutResponseModel({
-    required this.attendTime, 
+    required this.attendTime,
   });
 
   factory CheckInOutResponseModel.fromJson(JSON json) {

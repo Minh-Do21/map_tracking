@@ -4,16 +4,16 @@ class VerifyDeviceParam {
   final String tokenFirebase;
 
   VerifyDeviceParam({
-    required this.deviceType, 
+    required this.deviceType,
     required this.deviceId,
     required this.tokenFirebase,
   });
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-      data['device_type'] = deviceType;
-      data['device_id'] = deviceId;
-      data['token_firebase'] = tokenFirebase;
+    data['device_type'] = deviceType;
+    data['device_id'] = deviceId;
+    data['token_firebase'] = tokenFirebase;
     return data;
   }
 }

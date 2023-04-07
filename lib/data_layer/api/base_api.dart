@@ -70,7 +70,7 @@ class APIDataStore {
         //     customURL ?? apiURL.path,
         //     requestMethod: 'GET');
         // if (response?.data['message_code'] == 11 && tryAgain) {
-          
+
         //   final authenRepository = AuthenRepository();
         //   if (await authenRepository.refreshToken()) {
         //     return await requestAPI(apiURL,
@@ -81,10 +81,13 @@ class APIDataStore {
         //   }
         // }
         print("Lỗi token ở đây !");
-        if(response?.data != null){
-          if(response!.data['error_code'].toString().contains("ERR_TOKEN_INVALID") ||
-            response.data['error_code'].toString().contains("ERR_TOKEN_NOT_FOUND")){
-
+        if (response?.data != null) {
+          if (response!.data['error_code']
+                  .toString()
+                  .contains("ERR_TOKEN_INVALID") ||
+              response.data['error_code']
+                  .toString()
+                  .contains("ERR_TOKEN_NOT_FOUND")) {
             print("Lỗi token - Thực hiện đăng xuất !!");
             // if(AppConfig.instance.isFirstLogout == false){
             //   AppConfig.instance.isFirstLogout = true;
@@ -92,31 +95,31 @@ class APIDataStore {
             //     channel: NOTIFICATION_CENTER_CHANNEL.LOG_OUT.channel,
             //   );
             // }
-            
-          }else if(response.data['error_code'].toString().contains("ERR_TOKEN_EXPIRED")){
+          } else if (response.data['error_code']
+              .toString()
+              .contains("ERR_TOKEN_EXPIRED")) {
             print("Lỗi token - Thực hiện reset token");
             //  await DioProvider.getCacheManager().deleteByPrimaryKeyAndSubKey(
             //       customURL ?? apiURL.path,
             //       requestMethod: 'GET');
-              // if (tryAgain) {
-              //   final authenRepository = AuthenRepository();
-              //   if (await authenRepository.refreshToken()) {
-              //     return await requestAPI(apiURL,
-              //         params: params,
-              //         body: body,
-              //         formData: formData,
-              //         tryAgain: false);
-              //   }else{
-              //     AppConfig.instance.isFirstLogout = true;
-              //     FlutterNotificationCenter.post(
-              //       channel: NOTIFICATION_CENTER_CHANNEL.LOG_OUT.channel,
-              //     );
-              //   }
-              // }
+            // if (tryAgain) {
+            //   final authenRepository = AuthenRepository();
+            //   if (await authenRepository.refreshToken()) {
+            //     return await requestAPI(apiURL,
+            //         params: params,
+            //         body: body,
+            //         formData: formData,
+            //         tryAgain: false);
+            //   }else{
+            //     AppConfig.instance.isFirstLogout = true;
+            //     FlutterNotificationCenter.post(
+            //       channel: NOTIFICATION_CENTER_CHANNEL.LOG_OUT.channel,
+            //     );
+            //   }
+            // }
           }
-
         }
-        
+
         throw ErrorFromServer.fromJson(response?.data);
       }
       // return response?.data['data'];
@@ -124,17 +127,15 @@ class APIDataStore {
     } on SocketException catch (_) {
       throw ErrorFromServer.noInternetConnection();
     } on DioError catch (e) {
-
       // print("Lỗi !!!!!! ${e.response?.statusCode}");
       if (e.response != null &&
           e.response?.data != null &&
           e.response?.data?.toString().isNotEmpty != null) {
-
-        if(e.response?.statusCode == 500){
+        if (e.response?.statusCode == 500) {
           throw ErrorFromServer.unknownError(customMessage: e.message);
         }
         throw ErrorFromServer.fromJson(e.response?.data);
-      }else if(e.type == DioErrorType.other){
+      } else if (e.type == DioErrorType.other) {
         throw ErrorFromServer.noInternetConnection();
       } else {
         throw ErrorFromServer.unknownError(customMessage: e.message);

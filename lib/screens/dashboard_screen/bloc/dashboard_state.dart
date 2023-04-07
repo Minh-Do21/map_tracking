@@ -17,6 +17,6 @@ class DashboardState extends Equatable {
 
   @override
   List<Object> get props => [
-    index,
-  ];
+        index,
+      ];
 }

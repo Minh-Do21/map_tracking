@@ -13,9 +13,10 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
     on<InitBlocEvent>(_initBlocEvent);
   }
 
-  Future<void> _initBlocEvent(InitBlocEvent event, Emitter<MessageState> emit) async {
-    emit(
-      state.copyWith(text: "",)
-    );
+  Future<void> _initBlocEvent(
+      InitBlocEvent event, Emitter<MessageState> emit) async {
+    emit(state.copyWith(
+      text: "",
+    ));
   }
 }

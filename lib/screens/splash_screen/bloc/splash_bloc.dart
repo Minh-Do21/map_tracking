@@ -7,16 +7,14 @@ part 'splash_event.dart';
 part 'splash_state.dart';
 
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
-
   SplashBloc() : super(SplashState()) {
     on<LoadDataEvent>(_loadDataEvent);
   }
 
   // ignore: avoid_void_async
-  void _loadDataEvent(SplashEvent event, Emitter<SplashState> emit) async{
-      await Future.delayed(const Duration(seconds: 2));
+  void _loadDataEvent(SplashEvent event, Emitter<SplashState> emit) async {
+    await Future.delayed(const Duration(seconds: 2));
 
-       emit(GoToDashBoardScreen());
-      
-  } 
+    emit(GoToDashBoardScreen());
+  }
 }

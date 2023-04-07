@@ -1,4 +1,4 @@
-class VideoUserPostParam{
+class VideoUserPostParam {
   String uniqueId;
   String userId;
   String? cursor;
@@ -8,15 +8,15 @@ class VideoUserPostParam{
     required this.uniqueId,
     required this.userId,
     this.cursor,
-    this.count, 
+    this.count,
   });
 
-  Map<String, dynamic> toJson(){
-    final data= <String, dynamic>{};
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
     data['unique_id'] = uniqueId;
     data['user_id'] = userId;
-    if(count!=null) data['count'] = count;
-    if(cursor != null) data['cursor'] = cursor;
+    if (count != null) data['count'] = count;
+    if (cursor != null) data['cursor'] = cursor;
     return data;
   }
 }

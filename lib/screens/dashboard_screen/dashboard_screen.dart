@@ -68,12 +68,12 @@ class _DashboardScreenFormState extends State<_DashboardScreenForm> {
     if (result.points.isNotEmpty) {
       print("Được nhéd");
       result.points.forEach((element) {
-        polylineCoordinates.add(      LatLng(element.latitude, element.longitude));
+        polylineCoordinates.add(LatLng(element.latitude, element.longitude));
       });
 
       setState(() {});
     } else {
-print("Không nhéd");
+      print("Không nhéd");
     }
   }
 

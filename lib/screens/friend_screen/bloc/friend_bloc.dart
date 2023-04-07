@@ -13,9 +13,10 @@ class FriendBloc extends Bloc<FriendEvent, FriendState> {
     on<InitBlocEvent>(_initBlocEvent);
   }
 
-  Future<void> _initBlocEvent(InitBlocEvent event, Emitter<FriendState> emit) async {
-    emit(
-      state.copyWith(text: "",)
-    );
+  Future<void> _initBlocEvent(
+      InitBlocEvent event, Emitter<FriendState> emit) async {
+    emit(state.copyWith(
+      text: "",
+    ));
   }
 }

@@ -47,7 +47,7 @@ class SessionManager {
     return myPrefs.getString(SessionManagerKey.X_RAPID_API_KEY);
   }
 
-   // Save XRapidAPIHost
+  // Save XRapidAPIHost
   Future<bool> saveXRapidAPIHost({required String host}) async {
     AppConfig.instance.XRapidAPIHost = host;
     final myPrefs = await SharedPreferences.getInstance();
@@ -58,7 +58,6 @@ class SessionManager {
     final myPrefs = await SharedPreferences.getInstance();
     return myPrefs.getString(SessionManagerKey.X_RAPID_API_HOST);
   }
-
 
   // Remove all data save local
   Future<bool> removeAll() async {

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../utils/barrel_utils.dart';
@@ -7,9 +6,9 @@ import 'bloc/message_bloc.dart';
 class MessageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  BlocProvider(
+    return BlocProvider(
       create: (_) => MessageBloc()..add(InitBlocEvent()),
-        child: const _MessageScreenForm(),
+      child: const _MessageScreenForm(),
     );
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../utils/barrel_utils.dart';
@@ -7,9 +6,9 @@ import 'bloc/home_bloc.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  BlocProvider(
+    return BlocProvider(
       create: (_) => HomeBloc()..add(InitBlocEvent()),
-        child: const _HomeScreenForm(),
+      child: const _HomeScreenForm(),
     );
   }
 }

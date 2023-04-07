@@ -1,5 +1,4 @@
 class Utils {
-
   // static String convertNumber(int numberLike){
   //   final usCurrency = NumberFormat('#,##0', 'en_US');
 
@@ -22,9 +21,9 @@ class Utils {
   //       return "${numbers[0]}$viewUnit";
   //     }
   //   }
-    
+
   //   return numberLike.toString();
-  // } 
+  // }
 }
 
 extension PowerString on String {

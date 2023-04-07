@@ -47,8 +47,7 @@ class CustomEditText extends StatelessWidget {
                   borderSide: BorderSide(color: COLOR_CONST.white),
                 ),
                 border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0)
-                ),
+                    borderRadius: BorderRadius.circular(5.0)),
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: COLOR_CONST.crusta),
                 ),

@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:g_json/g_json.dart';
 import '../../data_layer/api/barrel_api.dart';
@@ -6,7 +5,7 @@ import '../../data_layer/request_params/user_info_param.dart';
 
 class AuthenRepository {
   APIDataStore apiDataStore = APIDataStore();
-  //login 
+  //login
   // Future<UserInfoResponseModel> getUserInfo(UserInfoParam userInfoParam) async {
   //   try {
   //     final response = await apiDataStore.requestAPI(

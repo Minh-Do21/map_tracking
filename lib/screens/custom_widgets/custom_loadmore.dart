@@ -12,7 +12,8 @@ class CustomLoadMore extends StatelessWidget {
       builder: (context, mode) => Center(
         child: Container(
           padding: EdgeInsets.only(
-              top: getProportionateScreenWidth(20), bottom: SizeConfig.paddingBottom),
+              top: getProportionateScreenWidth(20),
+              bottom: SizeConfig.paddingBottom),
           child: const CupertinoActivityIndicator(),
         ),
       ),

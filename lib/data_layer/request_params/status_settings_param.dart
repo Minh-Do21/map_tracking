@@ -3,14 +3,14 @@ class StatusSettingsParam {
   final bool status;
 
   StatusSettingsParam({
-    required this.settingType, 
+    required this.settingType,
     required this.status,
   });
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-      data['setting_type'] = settingType;
-      data['status'] = status;
+    data['setting_type'] = settingType;
+    data['status'] = status;
     return data;
   }
 }

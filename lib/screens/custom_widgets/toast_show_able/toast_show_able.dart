@@ -36,7 +36,7 @@ mixin ToastShowAble {
                     bottomLeft: Radius.circular(15),
                     bottomRight: Radius.circular(15)),
                 color: toastType.backgroundColor,
-                 boxShadow: [
+                boxShadow: [
                   BoxShadow(
                     offset: const Offset(0, 2),
                     blurRadius: 1,
@@ -65,7 +65,8 @@ mixin ToastShowAble {
                   Expanded(
                     child: Text(
                       message,
-                      style: FONT_CONST.semoBold(color: COLOR_CONST.pomegranate),
+                      style:
+                          FONT_CONST.semoBold(color: COLOR_CONST.pomegranate),
                     ),
                   ),
                 ],
