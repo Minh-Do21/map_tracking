@@ -75,9 +75,10 @@ dependencies:
   location: 4.4.0
 
   husky: ^0.1.6
-  lint_staged: ^0.2.0
+  # dart_pre_commit: ^2.3.2
 
 dev_dependencies:
+  flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
 
@@ -86,7 +87,6 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -133,6 +133,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-
-lint_staged:
-  'lib/**.dart': dart analyze && dart format --fix && dart fix --apply

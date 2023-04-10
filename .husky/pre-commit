@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-dart run lint_staged
-# git add .
+# dart format
+dart analyze
+# dart format
+git add .
