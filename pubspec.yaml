@@ -74,13 +74,11 @@ dependencies:
   google_maps_flutter: 2.2.5
   location: 4.4.0
 
-  husky: ^0.1.6
-  # dart_pre_commit: ^2.3.2
 
 dev_dependencies:
-  flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
+  husky: ^0.1.6
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
