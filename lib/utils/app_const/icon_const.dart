@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+// ignore: camel_case_types
 enum ICON_CONST {
   ic_home,
   ic_home_selected,

@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:rxdart/rxdart.dart';
 import '../friend_screen/friend_screen.dart';
 import '../home_screen/home_screen.dart';
 import '../message_screen/message_screen.dart';
@@ -104,159 +106,381 @@ class _DashboardScreenFormState extends State<_DashboardScreenForm> {
     });
   }
 
+  Color backgroundColor = COLOR_CONST.dustyGray;
+
+  final TextEditingController _textEditingController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+
+  List<User> listItem = [
+    User(
+        name: "Minh Do",
+        avatar:
+            "https://haycafe.vn/wp-content/uploads/2022/03/anh-Khung-Long-1.jpg",
+        id: "1"),
+    User(
+        name: "Văn Hướng",
+        avatar:
+            "https://haycafe.vn/wp-content/uploads/2022/03/anh-Khung-Long-1.jpg",
+        id: "2"),
+    User(
+        name: "Đức Tú",
+        avatar:
+            "https://haycafe.vn/wp-content/uploads/2022/03/anh-Khung-Long-1.jpg",
+        id: "3"),
+    User(
+        name: "Đức Tú",
+        avatar:
+            "https://haycafe.vn/wp-content/uploads/2022/03/anh-Khung-Long-1.jpg",
+        id: "3"),
+    User(
+        name: "Đức Tú",
+        avatar:
+            "https://haycafe.vn/wp-content/uploads/2022/03/anh-Khung-Long-1.jpg",
+        id: "3"),
+    User(
+        name: "Đức Tú",
+        avatar:
+            "https://haycafe.vn/wp-content/uploads/2022/03/anh-Khung-Long-1.jpg",
+        id: "3"),
+    User(
+        name: "Đức Tú",
+        avatar:
+            "https://haycafe.vn/wp-content/uploads/2022/03/anh-Khung-Long-1.jpg",
+        id: "3"),
+    User(
+        name: "Đức Tú",
+        avatar:
+            "https://haycafe.vn/wp-content/uploads/2022/03/anh-Khung-Long-1.jpg",
+        id: "3"),
+    User(
+        name: "Đức Tú",
+        avatar:
+            "https://haycafe.vn/wp-content/uploads/2022/03/anh-Khung-Long-1.jpg",
+        id: "3"),
+    User(
+        name: "Đức Tú",
+        avatar:
+            "https://haycafe.vn/wp-content/uploads/2022/03/anh-Khung-Long-1.jpg",
+        id: "3"),
+    User(
+        name: "Đức Tú",
+        avatar:
+            "https://haycafe.vn/wp-content/uploads/2022/03/anh-Khung-Long-1.jpg",
+        id: "3"),
+    User(
+        name: "Đức Tú",
+        avatar:
+            "https://haycafe.vn/wp-content/uploads/2022/03/anh-Khung-Long-1.jpg",
+        id: "3"),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return BlocListener<DashboardBloc, DashboardState>(
-        listenWhen: (previous, current) => previous.index != current.index,
-        listener: (context, state) {},
-        child: Scaffold(
-          extendBody: true,
-          body: Container(
-            child: GoogleMap(
-              initialCameraPosition:
-                  const CameraPosition(target: myLocation, zoom: 14),
-              polylines: {
-                Polyline(
-                    polylineId: const PolylineId("route"),
-                    points: polylineCoordinates)
-              },
-              markers: {
-                const Marker(
-                    markerId: MarkerId("myLocation"), position: myLocation),
-                const Marker(
-                    markerId: MarkerId("targetLocation"),
-                    position: targetLocation)
-              },
-            ),
+    return GestureDetector(
+      onTap: () async {
+        setState(() {
+          backgroundColor = COLOR_CONST.dustyGray;
+          _textEditingController.text = "";
+          _focusNode.unfocus();
+        });
+      },
+      child: Scaffold(
+        extendBody: true,
+        backgroundColor: backgroundColor,
+        body: Center(
+            child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          margin: EdgeInsets.only(top: 100),
+          child: Column(
+            children: [
+              RawAutocomplete<User>(
+                textEditingController: _textEditingController,
+                focusNode: _focusNode,
+                optionsBuilder: (textEditingValue) async {
+                  print("Bấmmmmmm");
+                  setState(() {
+                    backgroundColor = COLOR_CONST.black.withOpacity(0.5);
+                  });
+                  return listItem.where((element) {
+                    return element.name
+                        .toLowerCase()
+                        .contains(textEditingValue.text.toLowerCase());
+                  });
+                },
+                onSelected: (option) {
+                  print("CHỌN ${option}");
+                },
+                fieldViewBuilder: (context, textEditingController, focusNode,
+                    onFieldSubmitted) {
+                  return TextField(
+                    controller: textEditingController,
+                    focusNode: focusNode,
+                    style: FONT_CONST.regular(
+                      color: COLOR_CONST.black,
+                      fontSize: 14,
+                    ),
+                    decoration: InputDecoration(
+                      hintText: "Tìm bác sĩ...",
+                      filled: true,
+                      fillColor: COLOR_CONST.white,
+                      isDense: true,
+                      hintStyle: FONT_CONST.regular(
+                        color: COLOR_CONST.black,
+                        fontSize: 14,
+                      ),
+                      prefixIconConstraints: BoxConstraints.expand(
+                        width: getProportionateScreenWidth(40),
+                        height: getProportionateScreenWidth(20),
+                      ),
+                      prefixIcon: Container(
+                        alignment: Alignment.centerRight,
+                        margin: EdgeInsets.only(
+                            right: getProportionateScreenWidth(5)),
+                        child: SvgPicture.asset(
+                          ICON_CONST.ic_search.path,
+                          width: 15,
+                          color: COLOR_CONST.black,
+                        ),
+                      ),
+                      contentPadding: EdgeInsets.only(
+                        left: getProportionateScreenWidth(20),
+                        right: getProportionateScreenWidth(0),
+                        top: getProportionateScreenWidth(15),
+                        bottom: getProportionateScreenWidth(12),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: COLOR_CONST.white),
+                          borderRadius: BorderRadius.circular(8),
+                          gapPadding: 0),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: COLOR_CONST.white),
+                          borderRadius: BorderRadius.circular(8),
+                          gapPadding: 0),
+                    ),
+                  );
+                },
+                optionsViewBuilder: (context, onSelected, options) {
+                  return Container(
+                    margin: const EdgeInsets.only(top: 1),
+                    // color: COLOR_CONST.white,
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Material(
+                        elevation: 4.0,
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                              maxHeight: 300,
+                              maxWidth: SizeConfig.screenWidth - 40),
+                          child: ListView.builder(
+                            padding: EdgeInsets.zero,
+                            shrinkWrap: true,
+                            itemCount: options.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final User option = options.elementAt(index);
+                              return InkWell(
+                                  onTap: () {
+                                    onSelected(option);
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.all(5),
+                                    decoration: const BoxDecoration(
+                                      border: Border(
+                                        bottom: BorderSide(
+                                          color: COLOR_CONST.silver,
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Image.network(
+                                          option.avatar,
+                                          width: 50,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          option.name,
+                                        )
+                                      ],
+                                    ),
+                                  ));
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                displayStringForOption: (option) {
+                  return "${option.name}";
+                },
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                width: SizeConfig.screenWidth,
+                height: 50,
+                color: COLOR_CONST.allports,
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                width: SizeConfig.screenWidth,
+                height: 50,
+                color: COLOR_CONST.allports,
+              )
+            ],
           ),
-          // body: IndexedStack(
-          //   index: _currentIndex,
-          //   children: _children,
-          // ),
-          // // resizeToAvoidBottomPadding: false,
-          // bottomNavigationBar: BottomAppBar(
-          //   notchMargin: 0,
-          //   color: COLOR_CONST.black,
-          //   child: Container(
-          //     decoration: const BoxDecoration(
-          //       color: COLOR_CONST.black,
-          //       boxShadow: [
-          //         BoxShadow(
-          //             color: Colors.white,
-          //             offset: Offset(0, -2),
-          //             blurRadius: 1,
-          //             spreadRadius: -2.8,
-          //             blurStyle: BlurStyle.solid),
-          //       ],
-          //     ),
-          //     height: 60,
-          //     child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //       children: <Widget>[
-          //         //Item Home
-          //         _bottomNavibarItem(
-          //           icon: SvgPicture.asset(
-          //             _currentIndex == 0
-          //               ? ICON_CONST.ic_home_selected.path
-          //               : ICON_CONST.ic_home.path,
-          //             color: _currentIndex == 0
-          //                 ? COLOR_CONST.white
-          //                 : COLOR_CONST.silver,
-          //             width: 20,
-          //           ),
-          //           text: Text(
-          //             'Home',
-          //             style: FONT_CONST.semoBold(
-          //               fontSize: 10,
-          //               color: _currentIndex == 0
-          //                   ? COLOR_CONST.white
-          //                   : COLOR_CONST.silver,
-          //             ),
-          //           ),
-          //           onTap: () {
-          //             _indexChangeSetState(0);
-          //           },
-          //         ),
-          //         //Item Friend
-          //         _bottomNavibarItem(
-          //           icon: SvgPicture.asset(
-          //             _currentIndex == 1
-          //               ? ICON_CONST.ic_friend_selected.path
-          //               : ICON_CONST.ic_friend.path,
-          //             color: _currentIndex == 1
-          //                 ? COLOR_CONST.white
-          //                 : COLOR_CONST.silver,
-          //             width: 20,
-          //           ),
-          //           text: Text(
-          //             'Friend',
-          //             style: FONT_CONST.semoBold(
-          //               fontSize: 10,
-          //               color: _currentIndex == 1
-          //                   ? COLOR_CONST.white
-          //                   : COLOR_CONST.silver,
-          //             ),
-          //           ),
-          //           onTap: () {
-          //             _indexChangeSetState(1);
-          //           },
-          //         ),
+        )),
+        // body: Container(
+        //   child: GoogleMap(
+        //     initialCameraPosition:
+        //         const CameraPosition(target: myLocation, zoom: 14),
+        //     polylines: {
+        //       Polyline(
+        //           polylineId: const PolylineId("route"),
+        //           points: polylineCoordinates)
+        //     },
+        //     markers: {
+        //       const Marker(
+        //           markerId: MarkerId("myLocation"), position: myLocation),
+        //       const Marker(
+        //           markerId: MarkerId("targetLocation"),
+        //           position: targetLocation)
+        //     },
+        //   ),
+        // ),
+        // body: IndexedStack(
+        //   index: _currentIndex,
+        //   children: _children,
+        // ),
+        // // resizeToAvoidBottomPadding: false,
+        // bottomNavigationBar: BottomAppBar(
+        //   notchMargin: 0,
+        //   color: COLOR_CONST.black,
+        //   child: Container(
+        //     decoration: const BoxDecoration(
+        //       color: COLOR_CONST.black,
+        //       boxShadow: [
+        //         BoxShadow(
+        //             color: Colors.white,
+        //             offset: Offset(0, -2),
+        //             blurRadius: 1,
+        //             spreadRadius: -2.8,
+        //             blurStyle: BlurStyle.solid),
+        //       ],
+        //     ),
+        //     height: 60,
+        //     child: Row(
+        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //       children: <Widget>[
+        //         //Item Home
+        //         _bottomNavibarItem(
+        //           icon: SvgPicture.asset(
+        //             _currentIndex == 0
+        //               ? ICON_CONST.ic_home_selected.path
+        //               : ICON_CONST.ic_home.path,
+        //             color: _currentIndex == 0
+        //                 ? COLOR_CONST.white
+        //                 : COLOR_CONST.silver,
+        //             width: 20,
+        //           ),
+        //           text: Text(
+        //             'Home',
+        //             style: FONT_CONST.semoBold(
+        //               fontSize: 10,
+        //               color: _currentIndex == 0
+        //                   ? COLOR_CONST.white
+        //                   : COLOR_CONST.silver,
+        //             ),
+        //           ),
+        //           onTap: () {
+        //             _indexChangeSetState(0);
+        //           },
+        //         ),
+        //         //Item Friend
+        //         _bottomNavibarItem(
+        //           icon: SvgPicture.asset(
+        //             _currentIndex == 1
+        //               ? ICON_CONST.ic_friend_selected.path
+        //               : ICON_CONST.ic_friend.path,
+        //             color: _currentIndex == 1
+        //                 ? COLOR_CONST.white
+        //                 : COLOR_CONST.silver,
+        //             width: 20,
+        //           ),
+        //           text: Text(
+        //             'Friend',
+        //             style: FONT_CONST.semoBold(
+        //               fontSize: 10,
+        //               color: _currentIndex == 1
+        //                   ? COLOR_CONST.white
+        //                   : COLOR_CONST.silver,
+        //             ),
+        //           ),
+        //           onTap: () {
+        //             _indexChangeSetState(1);
+        //           },
+        //         ),
 
-          //         //Item Message
-          //         _bottomNavibarItem(
-          //           icon: SvgPicture.asset(
-          //             _currentIndex == 2
-          //               ? ICON_CONST.ic_message_selected.path
-          //               : ICON_CONST.ic_message.path,
-          //             color: _currentIndex == 2
-          //                 ? COLOR_CONST.white
-          //                 : COLOR_CONST.silver,
-          //             width: 20,
-          //           ),
-          //           text: Text(
-          //             'Message',
-          //             style: FONT_CONST.semoBold(
-          //               fontSize: 10,
-          //               color: _currentIndex == 2
-          //                   ? COLOR_CONST.white
-          //                   : COLOR_CONST.silver,
-          //             ),
-          //           ),
-          //           onTap: () {
-          //             _indexChangeSetState(2);
-          //           },
-          //         ),
+        //         //Item Message
+        //         _bottomNavibarItem(
+        //           icon: SvgPicture.asset(
+        //             _currentIndex == 2
+        //               ? ICON_CONST.ic_message_selected.path
+        //               : ICON_CONST.ic_message.path,
+        //             color: _currentIndex == 2
+        //                 ? COLOR_CONST.white
+        //                 : COLOR_CONST.silver,
+        //             width: 20,
+        //           ),
+        //           text: Text(
+        //             'Message',
+        //             style: FONT_CONST.semoBold(
+        //               fontSize: 10,
+        //               color: _currentIndex == 2
+        //                   ? COLOR_CONST.white
+        //                   : COLOR_CONST.silver,
+        //             ),
+        //           ),
+        //           onTap: () {
+        //             _indexChangeSetState(2);
+        //           },
+        //         ),
 
-          //         //Item Profile
-          //         _bottomNavibarItem(
-          //           icon: SvgPicture.asset(
-          //             _currentIndex == 3
-          //               ? ICON_CONST.ic_profile_selected.path
-          //               : ICON_CONST.ic_profile.path,
-          //             color: _currentIndex == 3
-          //                 ? COLOR_CONST.white
-          //                 : COLOR_CONST.silver,
-          //             width: 20,
-          //             height: 20,
-          //           ),
-          //           text: Text(
-          //             'Profile',
-          //             style: FONT_CONST.semoBold(
-          //               fontSize: 10,
-          //               color: _currentIndex == 3
-          //                   ? COLOR_CONST.white
-          //                   : COLOR_CONST.silver,
-          //             ),
-          //           ),
-          //           onTap: () {
-          //             _indexChangeSetState(3);
-          //           },
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
-        ));
+        //         //Item Profile
+        //         _bottomNavibarItem(
+        //           icon: SvgPicture.asset(
+        //             _currentIndex == 3
+        //               ? ICON_CONST.ic_profile_selected.path
+        //               : ICON_CONST.ic_profile.path,
+        //             color: _currentIndex == 3
+        //                 ? COLOR_CONST.white
+        //                 : COLOR_CONST.silver,
+        //             width: 20,
+        //             height: 20,
+        //           ),
+        //           text: Text(
+        //             'Profile',
+        //             style: FONT_CONST.semoBold(
+        //               fontSize: 10,
+        //               color: _currentIndex == 3
+        //                   ? COLOR_CONST.white
+        //                   : COLOR_CONST.silver,
+        //             ),
+        //           ),
+        //           onTap: () {
+        //             _indexChangeSetState(3);
+        //           },
+        //         ),
+        //       ],
+        //     ),
+        //   ),
+        // ),
+      ),
+    );
   }
 
   // Widget button navibar
@@ -283,4 +507,16 @@ class _DashboardScreenFormState extends State<_DashboardScreenForm> {
       ),
     ));
   }
+}
+
+class User {
+  final String name;
+  final String avatar;
+  final String id;
+
+  const User({
+    required this.name,
+    required this.avatar,
+    required this.id,
+  });
 }
